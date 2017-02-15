@@ -1,7 +1,7 @@
 window.onload = run();
 
 function run() {
-    arrayTest();
+    // arrayTest();
     initDom();
 }
 
@@ -61,17 +61,31 @@ function initDom() {
 
 
     loginButton.addEventListener('click', function() {
-        try {
-            if (document.getElementById('username').value == '') {
-                throw "请输入用户名";
-            }
-            if (document.getElementById('password').value == '') {
-                throw "请输入密码";
-            }
-
-        } catch (error) {
-            alert(error);
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value
+        if (username == ""){
+            alert("请输入用户名");
         }
-        console.log('正在登录…');
+        if (password == ""){
+            alert("请输入密码");
+        }
+        login(username, password)
+
+
     });
+}
+
+
+function login(username, password) {
+    var xmlhttp, loginUrl;
+    loginUrl = "/api/login";
+    user_id="username+"&password="+password";
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.open("POST", loginUrl, true);
+    xmlhttp.send();
+    console.log(xmlhttp.responseText);
 }
