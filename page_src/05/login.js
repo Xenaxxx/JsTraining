@@ -75,6 +75,7 @@ function formatData(teams,groups){
 function addTeamDOM(teams){
   $("#loginForm").hide();
   $("#teamlist").css("display", "block");
+
   _.each(teams, function(team) {
     console.log(team.groups.kbName);
     var bDiv = $("<div><div>");
